@@ -46,6 +46,8 @@ namespace PAG
             void mostrarInformacionGL();
 
             void notificarCambioColor(float r, float g, float b, float a) override;
+        
+            void creaShaderProgram();
     };
 
 };

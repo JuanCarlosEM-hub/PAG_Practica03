@@ -107,4 +107,39 @@ namespace PAG {
         establecerColor(r, g, b, a);
     }
 
+    /**
+    * Método para crear, compilar y enlazar el shader program
+    * @note No se incluye ninguna comprobación de errores
+    */
+    void PAG::Renderer::creaShaderProgram( )
+    {
+        std::string miVertexShader =
+        "#version 410\n"
+        "layout (location = 0) in vec3 posicion;\n"
+        "void main ()\n"
+        "{ gl_Position = vec4 ( posicion, 1 );\n"
+        "}\n";
+        std::string miFragmentShader =
+            "#version 410\n"
+            "out vec4 colorFragmento;\n"
+            "void main ()\n"
+            "{ colorFragmento = vec4 ( 1.0, .4, .2, 1.0 );\n"
+            "}\n";
+
+        idVS = glCreateShader ( GL_VERTEX_SHADER );
+        const GLchar* fuenteVS = miVertexShader.c_str ();
+        glShaderSource ( idVS, 1, &fuenteVS, nullptr );
+        glCompileShader ( idVS );
+
+        idFS = glCreateShader ( GL_FRAGMENT_SHADER );
+        const GLchar* fuenteFS = miFragmentShader.c_str ();
+        glShaderSource ( idFS, 1, &fuenteFS, nullptr );
+        glCompileShader ( idFS );
+
+        idSP = glCreateProgram ();
+        glAttachShader ( idSP, idVS );
+        glAttachShader ( idSP, idFS );
+        glLinkProgram ( idSP );
+    }
+
 }
