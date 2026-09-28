@@ -58,6 +58,13 @@ namespace PAG {
      */
     void Renderer::refrescar() {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // refrescamos el buffer
+
+        glPolygonMode ( GL_FRONT_AND_BACK, GL_FILL );
+        glUseProgram ( idSP );
+        glBindVertexArray ( idVAO );
+        glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER, idIBO );
+        glDrawElements ( GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr );
+
     }
 
     /**
