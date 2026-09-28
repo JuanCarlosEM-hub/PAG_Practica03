@@ -48,7 +48,9 @@ namespace PAG {
         PAG::GUI::getInstance().addListener(this);
         // Configuración inicial del estado de OpenGL
         glClearColor(0.6f, 0.6f, 0.6f, 1.0f);
-        glEnable(GL_DEPTH_TEST);
+        glEnable ( GL_DEPTH_TEST );
+        glEnable ( GL_MULTISAMPLE );
+
     }
 
     /**
