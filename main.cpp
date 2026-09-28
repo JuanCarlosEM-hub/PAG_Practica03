@@ -174,6 +174,9 @@ int main()
 
     PAG::Renderer::getInstance().mostrarInformacionGL();
 
+    PAG::Renderer::getInstance().creaShaderProgram ();
+    PAG::Renderer::getInstance().creaModelo ();
+
     // - Ciclo de eventos principal de la aplicación (se unifica en un único bucle)
     while ( !glfwWindowShouldClose ( window ) )
     {
