@@ -175,21 +175,7 @@ namespace PAG {
     */
     void PAG::Renderer::creaModelo ( )
     {
-        GLfloat vertices[] = { -.5, -.5, 0,
-                                .5, -.5, 0,
-                                .0, .5, 0 };
-        GLuint indices[] = { 0, 1, 2 };
-        glGenVertexArrays ( 1, &idVAO );
-        glBindVertexArray ( idVAO );
-
-        glGenBuffers ( 1, &idVBO );
-        glBindBuffer ( GL_ARRAY_BUFFER, idVBO );
-        glBufferData ( GL_ARRAY_BUFFER, 9*sizeof(GLfloat), vertices, GL_STATIC_DRAW );
-        glVertexAttribPointer ( 0, 3, GL_FLOAT, GL_FALSE, 3*sizeof(GLfloat), nullptr );
-        glEnableVertexAttribArray ( 0 );
-        glGenBuffers ( 1, &idIBO );
-        glBindBuffer ( GL_ELEMENT_ARRAY_BUFFER, idIBO );
-        glBufferData ( GL_ELEMENT_ARRAY_BUFFER, 3*sizeof(GLuint), indices, GL_STATIC_DRAW );
+        if (esEnlazado){crearModeloEntrelazado();}else{creaModeloNoEntrelazado();}
     }
 
     /**
