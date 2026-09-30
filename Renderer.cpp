@@ -250,5 +250,10 @@ namespace PAG {
             0.0f, 1.0f, 0.0f,  // Vértice 1: Verde
             0.0f, 0.0f, 1.0f   // Vértice 2: Azul
         };
+
+        //Genera un identificador único
+        glGenVertexArrays(1, &idVAO);
+        //Activa el VAO
+        glBindVertexArray(idVAO);
     }
 }
