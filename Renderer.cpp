@@ -147,7 +147,7 @@ namespace PAG {
         std::string rutaVS = nombreBase + "-vs.glsl";
         std::string rutaFS = nombreBase + "-fs.glsl";
 
-        //Cargamos el codigo fuente 
+        //Cargamos el codigo fuente
         std::string miVertexShader = cargarArchivoTexto(rutaVS);
         std::string miFragmentShader = cargarArchivoTexto(rutaFS);
 
