@@ -62,10 +62,6 @@ void mouse_button_callback ( GLFWwindow *window, int button, int action, int mod
         PAG::GUI::getInstance().addMensaje("Soltando el boton:" + std::to_string(button));
     }
 
-    if (button == GLFW_MOUSE_BUTTON_2 && action == GLFW_PRESS ) {
-        PAG::Renderer::getInstance().cambiarTipoBuffer();
-    }
-
     // Notificamo del evento a GUI
     PAG::GUI::getInstance().procesarBotonRaton(button, action);
 }

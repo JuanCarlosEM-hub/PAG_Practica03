@@ -169,13 +169,14 @@ namespace PAG {
         comprobarEnlazadoProgram(idSP);
     }
 
+
     /**
-    * Método para crear el VAO para el modelo a renderizar
-    * @note No se incluye ninguna comprobación de errores
-    */
+     * @brief Método para crear el VAO del triángulo con atributos de posición y color.
+     */
     void PAG::Renderer::creaModelo ( )
     {
-        if (esEnlazado){crearModeloEntrelazado();}else{crearModeloNoEntrelazado();}
+        crearModeloEntrelazado();
+        //crearModeloNoEntrelazado();
     }
 
     /**
@@ -236,6 +237,9 @@ namespace PAG {
         return buffer.str();
     }
 
+    /**
+     * @brief Generar el modelo con VBOs entrelazados.
+     */
     void Renderer::crearModeloEntrelazado() {
 
         GLuint indices[] = { 0, 1, 2 };
@@ -280,6 +284,9 @@ namespace PAG {
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW); // Copiamos la secuencia de renderizado
     }
 
+    /**
+     * @brief Generar el modelo con VBOs no entrelazados.
+     */
     void Renderer::crearModeloNoEntrelazado() {
 
         GLuint indices[] = { 0, 1, 2 };

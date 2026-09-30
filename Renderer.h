@@ -40,8 +40,6 @@ namespace PAG
             void comprobarComprobacionShader(GLuint shader, const std::string& tipoShader);
             void comprobarEnlazadoProgram(GLuint program);
 
-            //Metodo auxiliar para buffers enlazados
-            bool esEnlazado = false; ///< Identificador para determinar si enlazamos o no los buffers del shader
         public:
             ~Renderer();
             static Renderer& getInstance();
@@ -64,11 +62,6 @@ namespace PAG
 
             void crearModeloNoEntrelazado();
             void crearModeloEntrelazado();
-
-            /**
-             * @brief Cambia el b
-             */
-            void cambiarTipoBuffer(){esEnlazado = !esEnlazado;}
     };
 
 };
