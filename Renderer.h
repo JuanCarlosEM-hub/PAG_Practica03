@@ -63,7 +63,7 @@ namespace PAG
             void creaModelo();
 
             void crearModeloNoEntrelazado();
-            void crearModeloEnlazado();
+            void crearModeloEntrelazado();
 
             /**
              * @brief Cambia el b

@@ -175,7 +175,7 @@ namespace PAG {
     */
     void PAG::Renderer::creaModelo ( )
     {
-        if (esEnlazado){crearModeloEntrelazado();}else{creaModeloNoEntrelazado();}
+        if (esEnlazado){crearModeloEntrelazado();}
     }
 
     /**
@@ -236,7 +236,7 @@ namespace PAG {
         return buffer.str();
     }
 
-    void Renderer::crearModeloEnlazado() {
+    void Renderer::crearModeloEntrelazado() {
 
         GLuint indices[] = { 0, 1, 2 };
 
