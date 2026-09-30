@@ -162,20 +162,29 @@ int main()
 
     // Inicializamos la clase GUI pasando el puntero a la ventana GLFW
     PAG::GUI::getInstance().inicializar(window);
+    try
+    {
+        PAG::Renderer::getInstance().inicializar();
 
-    PAG::Renderer::getInstance().inicializar();
+        // - Registramos los callbacks que responderán a los eventos principales
+        glfwSetWindowRefreshCallback ( window, window_refresh_callback );
+        glfwSetFramebufferSizeCallback ( window, framebuffer_size_callback );
+        glfwSetKeyCallback ( window, key_callback );
+        glfwSetMouseButtonCallback ( window, mouse_button_callback );
+        glfwSetScrollCallback ( window, scroll_callback );
 
-    // - Registramos los callbacks que responderán a los eventos principales
-    glfwSetWindowRefreshCallback ( window, window_refresh_callback );
-    glfwSetFramebufferSizeCallback ( window, framebuffer_size_callback );
-    glfwSetKeyCallback ( window, key_callback );
-    glfwSetMouseButtonCallback ( window, mouse_button_callback );
-    glfwSetScrollCallback ( window, scroll_callback );
+        PAG::Renderer::getInstance().mostrarInformacionGL();
 
-    PAG::Renderer::getInstance().mostrarInformacionGL();
+        PAG::Renderer::getInstance().creaShaderProgram ();
+        PAG::Renderer::getInstance().creaModelo ();
 
-    PAG::Renderer::getInstance().creaShaderProgram ();
-    PAG::Renderer::getInstance().creaModelo ();
+
+        PAG::GUI::getInstance().addMensaje("Shader y modelo cargados con exito");
+    }catch (std::exception &e)
+    {
+        PAG::GUI::getInstance().addMensaje(e.what());
+        std::cout << e.what() << std::endl;
+    }
 
     // - Ciclo de eventos principal de la aplicación (se unifica en un único bucle)
     while ( !glfwWindowShouldClose ( window ) )
