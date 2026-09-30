@@ -237,6 +237,9 @@ namespace PAG {
     }
 
     void Renderer::crearModeloEnlazado() {
+
+        GLuint indices[] = { 0, 1, 2 };
+
         //Determinamos la posicion de los vértices
         GLfloat posiciones[] = {
             -.5f, -.5f, 0.0f,  // Vértice 0 (Esq. inferior izquierda)
@@ -255,5 +258,14 @@ namespace PAG {
         glGenVertexArrays(1, &idVAO);
         //Activa el VAO
         glBindVertexArray(idVAO);
+
+        //VBO 1: Posiciones (Location 0)
+        glGenBuffers(1, &idVBO); //Crea un buffer en la memoria de la GPU
+        glBindBuffer(GL_ARRAY_BUFFER, idVBO); //Enlaza el idVBO con el con el buffer activo
+        glBufferData(GL_ARRAY_BUFFER, sizeof(posiciones), posiciones, GL_STATIC_DRAW); //Asigna memoria a la GPU
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr); //Definimos como interpreta GPU el eespacio de memoria anterior
+        glEnableVertexAttribArray(0); //Habilita el atributo 0
+
+        
     }
 }
