@@ -236,4 +236,19 @@ namespace PAG {
         return buffer.str();
     }
 
+    void Renderer::crearModeloEnlazado() {
+        //Determinamos la posicion de los vértices
+        GLfloat posiciones[] = {
+            -.5f, -.5f, 0.0f,  // Vértice 0 (Esq. inferior izquierda)
+             .5f, -.5f, 0.0f,  // Vértice 1 (Esq. inferior derecha)
+             .0f,  .5f, 0.0f   // Vértice 2 (Superior centro)
+        };
+
+        //Determinamos el color de los vértices
+        GLfloat colores[] = {
+            1.0f, 0.0f, 0.0f,  // Vértice 0: Rojo
+            0.0f, 1.0f, 0.0f,  // Vértice 1: Verde
+            0.0f, 0.0f, 1.0f   // Vértice 2: Azul
+        };
+    }
 }
