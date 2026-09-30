@@ -32,6 +32,11 @@ namespace PAG
 
             // El constructor es privado para evitar que se cree el objeto desde otros módulos
             Renderer();
+
+            //Funciones auxiliares
+            std::string cargarArchivoTexto(const std::string& rutaArchivo);
+            void comprobarComprobacionShader(GLuint shader, const std::string& tipoShader);
+            void comprobarEnlazadoProgram(GLuint program);
         public:
             ~Renderer();
             static Renderer& getInstance();
@@ -51,8 +56,6 @@ namespace PAG
 
             void creaShaderProgram();
             void creaModelo();
-            void comprobarComprobacionShader(GLuint shader, const std::string& tipoShader);
-            void comprobarEnlazadoProgram(GLuint program);
     };
 
 };
