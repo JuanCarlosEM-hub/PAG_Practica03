@@ -8,6 +8,8 @@
  */
 #ifndef PR02_RENDERER_H
 #define PR02_RENDERER_H
+#include<string>
+#include<stdexcept>
 #include "Listener.h"
 
 namespace PAG
@@ -49,6 +51,8 @@ namespace PAG
 
             void creaShaderProgram();
             void creaModelo();
+            void comprobarComprobacionShader(GLuint shader, const std::string& tipoShader);
+            void comprobarEnlazadoProgram(GLuint program);
     };
 
 };

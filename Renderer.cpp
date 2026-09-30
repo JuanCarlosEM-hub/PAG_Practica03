@@ -194,4 +194,42 @@ namespace PAG {
         glBufferData ( GL_ELEMENT_ARRAY_BUFFER, 3*sizeof(GLuint), indices, GL_STATIC_DRAW );
     }
 
+    /**
+     * @brief Comprueba si hubo errores durante la compilación de un Shader.
+     * @throws std::runtime_error si falla la compilación.
+     */
+    void Renderer::comprobarComprobacionShader(GLuint shader, const std::string& tipoShader) {
+        GLint compilado = GL_FALSE;
+        glGetShaderiv(shader, GL_COMPILE_STATUS, &compilado);
+
+        if (compilado == GL_FALSE) {
+            GLint logLength = 0;
+            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &logLength);
+
+            std::string logMsg(logLength, '\0');
+            glGetShaderInfoLog(shader, logLength, &logLength, &logMsg[0]);
+
+            throw std::runtime_error("Error al compilar " + tipoShader + ":\n" + logMsg);
+        }
+    }
+
+    /**
+     * @brief Comprueba si hubo errores durante el enlazado del Shader Program.
+     * @throws std::runtime_error si falla el enlazado.
+     */
+    void Renderer::comprobarEnlazadoProgram(GLuint program) {
+        GLint enlazado = GL_FALSE;
+        glGetProgramiv(program, GL_LINK_STATUS, &enlazado);
+
+        if (enlazado == GL_FALSE) {
+            GLint logLength = 0;
+            glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
+
+            std::string logMsg(logLength, '\0');
+            glGetProgramInfoLog(program, logLength, &logLength, &logMsg[0]);
+
+            throw std::runtime_error("Error al enlazar el Shader Program:\n" + logMsg);
+        }
+    }
+
 }
