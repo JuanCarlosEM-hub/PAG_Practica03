@@ -196,6 +196,8 @@ namespace PAG {
 
     /**
      * @brief Comprueba si hubo errores durante la compilación de un Shader.
+     * @param tipoShader std::string&
+     * @param shader GLuit
      * @throws std::runtime_error si falla la compilación.
      */
     void Renderer::comprobarComprobacionShader(GLuint shader, const std::string& tipoShader) {
@@ -215,6 +217,7 @@ namespace PAG {
 
     /**
      * @brief Comprueba si hubo errores durante el enlazado del Shader Program.
+     * @param program GLuit
      * @throws std::runtime_error si falla el enlazado.
      */
     void Renderer::comprobarEnlazadoProgram(GLuint program) {
