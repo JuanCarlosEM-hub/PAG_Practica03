@@ -274,6 +274,9 @@ namespace PAG {
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
         glEnableVertexAttribArray(1);
 
-
+        // IBO: Índices
+        glGenBuffers(1, &idIBO); //Buffer de indices
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idIBO); //Enlazamos el buffer
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW); // Copiamos la secuencia de renderizado
     }
 }
