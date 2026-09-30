@@ -54,7 +54,7 @@ namespace PAG
 
             void notificarCambioColor(float r, float g, float b, float a) override;
 
-            void creaShaderProgram();
+            void creaShaderProgram(const std::string& nombreBase);
             void creaModelo();
     };
 

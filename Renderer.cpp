@@ -141,20 +141,15 @@ namespace PAG {
     * Método para crear, compilar y enlazar el shader program
     * @note No se incluye ninguna comprobación de errores
     */
-    void PAG::Renderer::creaShaderProgram( )
+    void PAG::Renderer::creaShaderProgram(const std::string& nombreBase)
     {
-        std::string miVertexShader =
-        "#version 410\n"
-        "layout (location = 0) in vec3 posicion;\n"
-        "void main ()\n"
-        "{ gl_Position = vec4 ( posicion, 1 );\n"
-        "}\n";
-        std::string miFragmentShader =
-            "#version 410\n"
-            "out vec4 colorFragmento;\n"
-            "void main ()\n"
-            "{ colorFragmento = vec4 ( 1.0, .4, .2, 1.0 );\n"
-            "}\n";
+        //Obtenemsos la ruta
+        std::string rutaVS = nombreBase + "-vs.glsl";
+        std::string rutaFS = nombreBase + "-fs.glsl";
+
+        //Cargamos el codigo fuente 
+        std::string miVertexShader = cargarArchivoTexto(rutaVS);
+        std::string miFragmentShader = cargarArchivoTexto(rutaFS);
 
         idVS = glCreateShader ( GL_VERTEX_SHADER );
         const GLchar* fuenteVS = miVertexShader.c_str ();
