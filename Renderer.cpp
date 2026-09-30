@@ -175,7 +175,7 @@ namespace PAG {
     */
     void PAG::Renderer::creaModelo ( )
     {
-        if (esEnlazado){crearModeloEntrelazado();}
+        if (esEnlazado){crearModeloEntrelazado();}else{crearModeloNoEntrelazado();}
     }
 
     /**
@@ -278,5 +278,18 @@ namespace PAG {
         glGenBuffers(1, &idIBO); //Buffer de indices
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idIBO); //Enlazamos el buffer
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW); // Copiamos la secuencia de renderizado
+    }
+
+    void crearModeloNoEntrelazado() {
+        struct Vertice {
+            GLfloat x, y, z; // Atributo 0: Posición
+            GLfloat r, g, b; // Atributo 1: Color
+        };
+
+        Vertice vertices[] = {
+            { -.5f, -.5f, 0.0f,   1.0f, 0.0f, 0.0f }, // Vértice 0: Rojo
+            {  .5f, -.5f, 0.0f,   0.0f, 1.0f, 0.0f }, // Vértice 1: Verde
+            {  .0f,  .5f, 0.0f,   0.0f, 0.0f, 1.0f }  // Vértice 2: Azul
+        };
     }
 }

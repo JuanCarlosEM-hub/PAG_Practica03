@@ -41,7 +41,7 @@ namespace PAG
             void comprobarEnlazadoProgram(GLuint program);
 
             //Metodo auxiliar para buffers enlazados
-            bool esEnlazado = true; ///< Identificador para determinar si enlazamos o no los buffers del shader
+            bool esEnlazado = false; ///< Identificador para determinar si enlazamos o no los buffers del shader
         public:
             ~Renderer();
             static Renderer& getInstance();
