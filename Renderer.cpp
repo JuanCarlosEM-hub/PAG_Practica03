@@ -266,6 +266,14 @@ namespace PAG {
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr); //Definimos como interpreta GPU el eespacio de memoria anterior
         glEnableVertexAttribArray(0); //Habilita el atributo 0
 
-        
+        //VBO 2: Colores (Location 1)
+        //Repetimos el mismo procedimiento pero cambiando el array y el index
+        glGenBuffers(1, &idVBO_color);
+        glBindBuffer(GL_ARRAY_BUFFER, idVBO_color);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(colores), colores, GL_STATIC_DRAW);
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), nullptr);
+        glEnableVertexAttribArray(1);
+
+
     }
 }
