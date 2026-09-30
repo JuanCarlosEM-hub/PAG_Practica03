@@ -13,7 +13,8 @@
 #include "GUI.h"
 
 #include <iostream>
-
+#include <fstream>
+#include <sstream>
 
 namespace PAG {
 
@@ -235,6 +236,23 @@ namespace PAG {
 
             throw std::runtime_error("Error al enlazar el Shader Program:\n" + logMsg);
         }
+    }
+
+    /**
+     * @brief Lee el contenido íntegro de un archivo de texto en disco.
+     * @param rutaArchivo Ruta relativa o absoluta del archivo.
+     * @return Cadena std::string con el código fuente.
+     * @throws std::runtime_error si no se puede abrir el archivo.
+     */
+    std::string Renderer::cargarArchivoTexto(const std::string& rutaArchivo) {
+        std::ifstream archivo(rutaArchivo);
+        if (!archivo.is_open()) {
+            throw std::runtime_error("No se pudo abrir el archivo de shader: " + rutaArchivo);
+        }
+
+        std::stringstream buffer;
+        buffer << archivo.rdbuf();
+        return buffer.str();
     }
 
 }
