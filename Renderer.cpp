@@ -280,7 +280,10 @@ namespace PAG {
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW); // Copiamos la secuencia de renderizado
     }
 
-    void crearModeloNoEntrelazado() {
+    void Renderer::crearModeloNoEntrelazado() {
+
+        GLuint indices[] = { 0, 1, 2 };
+
         struct Vertice {
             GLfloat x, y, z; // Atributo 0: Posición
             GLfloat r, g, b; // Atributo 1: Color
@@ -291,5 +294,25 @@ namespace PAG {
             {  .5f, -.5f, 0.0f,   0.0f, 1.0f, 0.0f }, // Vértice 1: Verde
             {  .0f,  .5f, 0.0f,   0.0f, 0.0f, 1.0f }  // Vértice 2: Azul
         };
+
+        glGenVertexArrays(1, &idVAO); //Generamos y vinculamos
+        glBindVertexArray(idVAO);
+
+        glGenBuffers(1, &idVBO); //Generamos un unico buffer
+        glBindBuffer(GL_ARRAY_BUFFER, idVBO); //Lo vinculamos a dicho buffer
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); //Le pasamos la informacion completa
+
+        //Definimos la pposición en memoria del atributo, este caso de la posición
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertice), (void*)offsetof(Vertice, x));
+        glEnableVertexAttribArray(0);
+
+        //Definimos la pposición en memoria del atributo, este caso del color
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertice), (void*)offsetof(Vertice, r));
+        glEnableVertexAttribArray(1);
+
+        //IBO
+        glGenBuffers(1, &idIBO);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, idIBO);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     }
 }
