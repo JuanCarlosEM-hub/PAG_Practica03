@@ -164,11 +164,13 @@ namespace PAG {
         const GLchar* fuenteFS = miFragmentShader.c_str ();
         glShaderSource ( idFS, 1, &fuenteFS, nullptr );
         glCompileShader ( idFS );
+        comprobarComprobacionShader(idFS, "Fragment Shader");
 
         idSP = glCreateProgram ();
         glAttachShader ( idSP, idVS );
         glAttachShader ( idSP, idFS );
         glLinkProgram ( idSP );
+        comprobarEnlazadoProgram(idSP);
     }
 
     /**
