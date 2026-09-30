@@ -30,6 +30,8 @@ namespace PAG
             GLuint idVBO = 0; ///<  Identificador del vertex buffer object
             GLuint idIBO = 0; ///<  Identificador del index buffer object
 
+            GLuint idVBO_color = 0; ///< VBO para colores (utilizado en la versión no entrelazada)
+
             // El constructor es privado para evitar que se cree el objeto desde otros módulos
             Renderer();
 
